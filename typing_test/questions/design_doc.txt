@@ -1,0 +1,147 @@
+Text File questions
+
+
+
+Problem 01: Sample Paragraphs
+
+
+
+- Which functions from utils.py will you use for interacting with the sample_paragraphs.txt file?
+I will use the functions close, readable, readline, and readlines to interact with sample_paragraphs.txt.
+
+
+
+
+Problem 02: Words Per Minute
+
+
+
+- Given a long string that contains a full paragraph (e.g. "This is my name. It is Bob. Also, I have a cat named Troy."), what function will you use to separate a string containing a full paragraph into its individual words?
+I would call the split function in order to separate the paragraph into individual words.
+
+
+
+
+- What is the calculation you will use in order to measure Words Per Minute speed? (You can describe your formula.)
+To measure words per minute, I would make a function with a stopwatch and a counter that increments by one everytime
+that the user types a letter. The function would then divide the counter by the stopwatch seconds to find characters per second, 
+then divide by five to find words per second. Finally, the function would multiply by 60 to find words per minute, and return that value.
+
+
+- What is the calculation you will use in order to measure accuracy? (You can describe your formula.)
+To measure accuracy, I would have a function that takes the user's string input as a parameter. I would loop through
+the letters of it and compare them to the letters of the correct word, incrementing a counter each time a letter is 
+incorrect. Then, the function would compute 1 - the number of incorrect letters divided by total letters, and
+multiply it by 100 to find the percentage.
+
+Problem 03: Pig Latin
+
+
+
+- How will you identify that a word starts with a consonant cluster? 
+I could loop through each of the letters in the word and concatenate it to a variable until a vowel is found.
+The variable's string value would then be the consonant start of the word. If its length is greater than 1, then 
+the word starts with a consonant cluster.
+
+
+
+
+Problem 04: Autocorrect Skeleton
+
+
+
+- How will you calculate the difference scores between the user input string and each valid word, and determine which difference is the smallest?
+I would call a score function, which determines how different an input string is from another string,
+on the input string and each word in the list of valid words, and have a variable store the current word
+with the lowest difference score. This variable is updated every time a valid word has a lower difference,
+and the index of the first valid word that was found will be stored in another variable. If there are 
+multiple words with the same distance score, then I would return the word that came first in the list by 
+checking the indices 
+
+
+
+
+Problem 05: Score Function 
+
+
+
+- What will your base case be?
+The base case will be when the length of the smaller string is 1. If the single character is the
+same as the first character of the other string, then it returns 1, otherwise it returns 0 
+
+
+
+
+- Identify two example inputs which fall into different recursive calls. In each of these cases, what recursive call should be made?
+1. swap_score('b', 'c')
+Calls the case for when the first letter of the two strings are not the same, which will return 0
+2. swap_score('b', 'b')
+Calls the case for when the first letter of the two strings are the same, which will return 1
+
+
+
+
+
+Problem 06: 
+
+
+
+- What does each of the recursive calls in the skeleton represent? Are there additional cases which don't fit into the three already given?
+Each of the recursive calls represent a difference case: whether the operation is to delete, add, or replace
+a letter. There are no additional cases that don't fit into the given ones.
+
+
+
+
+- If we called score_function("bot", "boot"), list a series of successive recursive calls we would go through to reach the base case. For example, if we called score_function("add", "aadd"), one step could be score_function("add", "aadd") -> score_function("add", "add").
+score_function("bot", "boot") -> score_function("bot", "bot")
+
+
+
+
+- Based on your above list of recursive calls, classify each step as an add, remove, a swap, or something else.
+Starting call -> remove 'o'
+
+
+
+
+- Why would your function choose this sequence of recursive calls over another?
+It has the least number of steps, which makes the function most efficient
+
+Problem 07: Accuracy
+
+
+
+- In your own words, why do we need to improve the accuracy of our existing score_function? In other words, what is the problem that we are trying to solve?
+The existing score function may have some words that end up having the same difference score, but 
+there may be a word that is more likely to be the user's intended word based on the distance of the 
+keys on the keyboard. Thus, improving the accuracy would provide a more accurate output of the 
+intended word.
+
+- How can you adapt your score function from the previous problem to take into account key distances?
+ (Hint: which recursive call will need to be modified?)
+The call for the case that a character needs to be replaced will have to be modified to take into 
+account the distances of the keys
+
+
+
+Problem 08: Efficiency
+
+
+
+- What data structure will you use to store all of the differences that score_function has already calculated?
+A dictionary will be used to store all the difference that have already been calculated.
+
+
+
+
+- What types of values will this data structure contain?
+This dictionary will contain the arguments that were passed for a call in a concatenation, as well
+as the output difference score that was returned.
+
+
+
+
+- Using the data structure you described, given a pair of words, how will you check whether score_function has already been called on that pair of words? If so, how will you access the already calculated difference?
+I will check for a concatenation of the two words, both in the order they are given as well as in the 
+opposite order. If the pair exists, then I will access the value assigned to the word pair.
